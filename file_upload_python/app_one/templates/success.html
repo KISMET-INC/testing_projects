@@ -6,10 +6,10 @@
     <title>Success</title>
 </head>
 <body>  
-    {% for hotel in hotels %}
-        <p>{{hotel.name}}</p>
-        {% for image in hotel.images.all %}
-            <img src ='{{ image.hotel_Main_Img.url }}'>
+    {% for owner in owners %}
+        <h1>{{owner.name}}</h1>
+        {% for image in owner.pet_imgs.all %}
+            <img src ='{{ image.pet_img.url }}' width='200px'>
         {% endfor %}
     {% endfor %}    
 </body>

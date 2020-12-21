@@ -1,10 +1,10 @@
 from django import forms 
 from .models import *
   
-class HotelForm(forms.ModelForm): 
+class OwnerForm(forms.ModelForm): 
   
     class Meta: 
-        model = Hotel 
+        model = Owner 
         fields = ['name']
 
 class ImgForm(forms.ModelForm): 
@@ -13,4 +13,4 @@ class ImgForm(forms.ModelForm):
   
     class Meta:
         model = Image
-        fields = ['hotel', 'hotel_Main_Img']
+        fields = ['owner', 'pet_img']
