@@ -3,7 +3,7 @@ from django.db import models
 
 # models.py 
 class Hotel(models.Model): 
-    name = models.CharField(max_length=50, null=True) 
+    name = models.CharField(max_length=50, blank = True, null=True) 
     
 
 class Image(models.Model):

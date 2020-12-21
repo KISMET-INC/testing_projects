@@ -11,7 +11,7 @@ def hotel_image_view(request):
        
   
         if form2.is_valid() and form.is_valid(): 
-            if request.POST['name'] != "hello":
+            if request.POST['name'] != "":
                 print(request.POST['name'])
                 form2.save()
                 newHotel = Hotel.objects.order_by('-id')[0]
