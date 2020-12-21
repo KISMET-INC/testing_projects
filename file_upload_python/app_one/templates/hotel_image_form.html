@@ -8,8 +8,8 @@
     <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
       
-        {{ form2.as_p }}
-        {{ form.as_p }}
+        {{ hotelForm.as_p }}
+        {{ imageForm.as_p }}
         <button type="submit">Upload</button> 
     </form> 
 </body> 
