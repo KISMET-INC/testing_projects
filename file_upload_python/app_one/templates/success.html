@@ -6,8 +6,11 @@
     <title>Success</title>
 </head>
 <body>  
-    {% for image in images %}
-    <p>{{image.hotel_Main_Img}}</p>
+    {% for hotel in hotels %}
+        <p>{{hotel.name}}</p>
+        {% for image in hotel.images.all %}
+            <img src ='{{ image.hotel_Main_Img.url }}'>
+        {% endfor %}
     {% endfor %}    
 </body>
 </html>
