@@ -11,14 +11,15 @@ def hotel_image_view(request):
        
   
         if form2.is_valid() and form.is_valid(): 
-          
+            if request.POST['name'] != "hello":
+                print(request.POST['name'])
+                form2.save()
+                newHotel = Hotel.objects.order_by('-id')[0]
+                newImage = Image.objects.create(hotel_Main_Img = request.FILES['hotel_Main_Img'], hotel = newHotel)
+                newImage.save()
+            else:
+                form.save()
 
-            form2.save()
-            newHotel = Hotel.objects.order_by('-id')[0]
-            
-
-            newImage = Image.objects.create(hotel_Main_Img = request.FILES['hotel_Main_Img'], hotel = newHotel)
-            newImage.save()
             return redirect('success') 
     else: 
         form2 = HotelForm() 
