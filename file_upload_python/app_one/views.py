@@ -6,20 +6,30 @@ from .forms import *
 def hotel_image_view(request): 
   
     if request.method == 'POST': 
-        form = HotelForm(request.POST, request.FILES) 
+        ownerForm= OwnerForm(request.POST, request.FILES) 
+        imageForm= ImgForm(request.POST, request.FILES) 
+       
   
-        if form.is_valid(): 
-            print(request.FILES)
-            form.save() 
+        if ownerForm.is_valid() and imageForm.is_valid(): 
+            if request.POST['name'] != "":
+                print(request.POST['name'])
+                ownerForm.save()
+                newOwner = Owner.objects.order_by('-id')[0]
+                newImage = Image.objects.create(pet_img = request.FILES['pet_img'], owner = newOwner)
+                newImage.save()
+            else:
+                imageForm.save()
+
             return redirect('success') 
     else: 
-        form = HotelForm() 
-    return render(request, 'hotel_image_form.html', {'form' : form}) 
+        ownerForm = OwnerForm() 
+        imageForm = ImgForm() 
+    return render(request, 'owner_and_pets.html', {'ownerForm' : ownerForm, 'imageForm' : imageForm }) 
   
   
 def success(request): 
     
     context = {
-        'images' : Hotel.objects.all()
+        'owners' : Owner.objects.all()
     }
     return render(request, 'success.html', context) 

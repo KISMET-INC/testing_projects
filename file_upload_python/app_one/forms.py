@@ -1,8 +1,16 @@
 from django import forms 
 from .models import *
   
-class HotelForm(forms.ModelForm): 
+class OwnerForm(forms.ModelForm): 
   
     class Meta: 
-        model = Hotel 
-        fields = ['name', 'hotel_Main_Img']
+        model = Owner 
+        fields = ['name']
+
+class ImgForm(forms.ModelForm): 
+
+       
+  
+    class Meta:
+        model = Image
+        fields = ['owner', 'pet_img']
