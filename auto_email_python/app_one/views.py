@@ -4,6 +4,7 @@ from .models import *
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import _thread
 
 def index(request):
     smtp_server = "smtp.gmail.com"
@@ -43,17 +44,25 @@ def index(request):
     message.attach(part2)
 
     context = ssl.create_default_context()
-
-    try:
-        server = smtplib.SMTP(smtp_server, port)
+    server = smtplib.SMTP(smtp_server, port)
+    
+    def login():
+        
         server.starttls(context = context) #Secure the connection
         server.login (sender_email, password)
         server.sendmail(sender_email, receiver_email, message.as_string())
         print('Success')
+
+
+    try:
+        _thread.start_new_thread(login,())
+        
+        
+        
     except Exception as e:
         print("error sending email")
     finally:
-        server.quit()
+        pass
     return render(request, 'index.html')
 
 # Create your views here.
