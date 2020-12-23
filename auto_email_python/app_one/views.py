@@ -8,20 +8,39 @@ from email.mime.multipart import MIMEMultipart
 def index(request):
     smtp_server = "smtp.gmail.com"
     port = 587 #For starttls
-    password = "Passion12**"
-    
+    password = input("Type your password and press enter:")
+
     sender_email = "kmoreland909@gmail.com"
     receiver_email = "kmoreland909@gmail.com"
 
+    message = MIMEMultipart("alternative")
+    message["Subject"] = "multipart test"
+    message["From"] = sender_email
+    message["To"] = receiver_email
 
-    message = """From: Pets Connect <from@fromdomain.com>
-To: Kristen <to@todomain.com>
-Subject: Someone sent love to Poe!
-
-Sign in to see who.
-<b>This is HTML message.</b>
-<h1>This is headline.</h1>
+    text = """\
+    Hi,
+    How are you?
+    Real Python has many great tutorials:
+    www.realpython.com
     """
+
+    html = """\
+    <html>
+    <body>
+        <h2>Hi,</h2>
+        How are you?<br>
+        <a href="http://www.realpython.com">Real Python</a> 
+        has many great tutorials.
+        </p>
+    </body>
+    </html>
+    """
+    part1 = MIMEText(text,'plain')
+    part2 = MIMEText(html, 'html')
+
+    message.attach(part1)
+    message.attach(part2)
 
     context = ssl.create_default_context()
 
@@ -29,7 +48,7 @@ Sign in to see who.
         server = smtplib.SMTP(smtp_server, port)
         server.starttls(context = context) #Secure the connection
         server.login (sender_email, password)
-        server.sendmail(sender_email, receiver_email, message)
+        server.sendmail(sender_email, receiver_email, message.as_string())
         print('Success')
     except Exception as e:
         print("error sending email")
