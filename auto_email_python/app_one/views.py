@@ -2,17 +2,25 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from .models import *
 import smtplib, ssl
-from smtplib import SMTPException
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def index(request):
     smtp_server = "smtp.gmail.com"
     port = 587 #For starttls
+    password = "Passion12**"
+    
     sender_email = "kmoreland909@gmail.com"
-    password = input("Type yoru password")
     receiver_email = "kmoreland909@gmail.com"
-    message = """\
-        Subject: Hi
-        This is a message from Python
+
+
+    message = """From: Pets Connect <from@fromdomain.com>
+To: Kristen <to@todomain.com>
+Subject: Someone sent love to Poe!
+
+Sign in to see who.
+<b>This is HTML message.</b>
+<h1>This is headline.</h1>
     """
 
     context = ssl.create_default_context()
