@@ -1,4 +1,4 @@
-# AUTO_EMAILER  Documenion
+# AUTO_EMAILER  Documentation
 
 ## == Description ==
 Automatically send emails from the application.
