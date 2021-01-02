@@ -10,9 +10,15 @@ def returnData(request):
         'user': user
     }
     print(user.age)
-    return render(request, 'snip.html',context)
+    return redirect('/redirecter')
 
-
+def redirecter(request):
+    user = User.objects.get(name='kris')
+    print('hi')
+    context = {
+        'user': user
+    }
+    return render(request,'snip.html',context)
 
 def index(request):
     user = User.objects.get(name='kris')
