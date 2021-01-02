@@ -1,11 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
-from django.template import Context, loader
-from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.renderers import StaticHTMLRenderer
-from django.template.response import TemplateResponse
+
 
 def returnData(request):
     user = User.objects.get(name='kris')
