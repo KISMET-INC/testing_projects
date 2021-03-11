@@ -2,15 +2,26 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8"> 
-    <title>Hotel_image</title> 
+    <title>Hotel_image</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% load static %}
+   
+    <script src="{% static 'croppie.js' %}"></script>
+    <script src="{% static '/myjs.js' %}"></script>  
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/css/croppie.css' %}">
 </head> 
 <body> 
     <form method = "post" enctype="multipart/form-data"> 
         {% csrf_token %} 
-      
+        
         {{ ownerForm.as_p }}
         {{ imageForm.as_p }}
         <button type="submit">Upload</button> 
-    </form> 
+    </form>
+    
+
+
+
 </body> 
 </html>
