@@ -33,3 +33,9 @@ def success(request):
         'owners' : Owner.objects.all()
     }
     return render(request, 'success.html', context) 
+
+class FiraCreateView(CreateView):
+    model = Image
+    form_class = ImgForm
+    template_name = 'owner_and_pets.html'
+    success_url = '/'

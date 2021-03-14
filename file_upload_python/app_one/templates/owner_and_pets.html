@@ -4,22 +4,25 @@
     <meta charset="UTF-8"> 
     <title>Hotel_image</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     {% load static %}
-   
-    <script src="{% static 'croppie.js' %}"></script>
-    <script src="{% static '/myjs.js' %}"></script>  
+       <script src="{% static '/myjs.js' %}"></script>  
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
-    <link rel="stylesheet" href="{% static '/css/croppie.css' %}">
 </head> 
 <body> 
-    <form method = "post" enctype="multipart/form-data"> 
-        {% csrf_token %} 
-        
-        {{ ownerForm.as_p }}
-        {{ imageForm.as_p }}
-        <button type="submit">Upload</button> 
-    </form>
-    
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
+
+<hr>
+<div style="width:50%">
+    <div id="cropper"></div>
+</div>
+
+{{ form.media }}
 
 
 

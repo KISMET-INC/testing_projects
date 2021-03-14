@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # models.py 
 class Owner(models.Model): 
     name = models.CharField(max_length=50, blank = True, null=True) 
